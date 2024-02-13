@@ -53,7 +53,11 @@ def show_level():
     all_sprites = pygame.sprite.Group()
     tiles_group = pygame.sprite.Group()
     player_group = pygame.sprite.Group()
-    level = load_level(input('Пожалуйста, введите имя файла с картой: '))
+    try:
+        level = load_level(input('Пожалуйста, введите имя файла с картой: '))
+    except Exception as e:
+        print("Такого файла не существует")
+        exit()
     player, player_x, player_y = generate_level(level, player_group, tiles_group, all_sprites)
 
     clock = pygame.time.Clock()
