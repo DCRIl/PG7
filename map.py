@@ -18,6 +18,10 @@ class Tile(pygame.sprite.Sprite):
         self.rect = self.image.get_rect().move(
             tile_width * pos_x, tile_height * pos_y)
 
+    def update(self, dx, dy):
+        self.rect.x -= dx * tile_width
+        self.rect.y -= dy * tile_height
+
 
 class Player(pygame.sprite.Sprite):
     def __init__(self, pos_x, pos_y, player_group, all_sprites):
@@ -28,6 +32,7 @@ class Player(pygame.sprite.Sprite):
         self.direction = None
         self.x = pos_x
         self.y = pos_y
+
     def move(self, dx, dy, tiles_group):
         self.rect.x += dx * tile_width
         self.rect.y += dy * tile_height
@@ -36,8 +41,10 @@ class Player(pygame.sprite.Sprite):
             if tile_type == 'wall':
                 self.rect.x -= dx * tile_width
                 self.rect.y -= dy * tile_height
-
-
+            else:
+                self.rect.x -= dx * tile_width
+                self.rect.y -= dy * tile_height
+                tiles_group.update(dx, dy)
 
 
 def generate_level(level, player_group, tiles_group, all_sprites):
@@ -54,4 +61,3 @@ def generate_level(level, player_group, tiles_group, all_sprites):
                 player_x, player_y = x, y
     # вернем игрока, а также размер поля в клетках
     return new_player, player_x, player_y
-

@@ -75,6 +75,7 @@ def show_level():
                 if event.key == pygame.K_RIGHT:
                     player.move(1, 0, tiles_group)
 
+        screen.fill("black")
         all_sprites.draw(screen)
         player_group.draw(screen)
         pygame.display.flip()
