@@ -21,6 +21,14 @@ class Tile(pygame.sprite.Sprite):
     def update(self, dx, dy):
         self.rect.x -= dx * tile_width
         self.rect.y -= dy * tile_height
+        if self.rect.x < 0:
+            self.rect.x = 9 * tile_width + dx * tile_width
+        elif self.rect.x > 11 * tile_width:
+            self.rect.x = -dx * tile_width
+        if self.rect.y > 11 * tile_height:
+            self.rect.y = -dy * tile_height
+        elif self.rect.y < 0:
+            self.rect.y = 9 * tile_height + dy * tile_height
 
 
 class Player(pygame.sprite.Sprite):

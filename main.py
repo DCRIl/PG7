@@ -9,7 +9,7 @@ FPS = 50
 
 
 pygame.init()
-size = width, height = 500, 500
+size = width, height = 750, 750
 screen = pygame.display.set_mode(size)
 
 def terminate():
